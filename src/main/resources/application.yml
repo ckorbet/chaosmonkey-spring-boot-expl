@@ -1,0 +1,68 @@
+server:
+ servlet:
+  context-path: /cartorgon
+ port: 8080
+ 
+info:
+ application:
+  name: chaosmonkey-spring-boot-expl
+  description: Demo for Chaos Monkey for Spring Boot
+  type: Spring Boot micro-service
+  version: 0.0.1-SNAPSHOT
+  profile: ${spring.profiles.active}
+ developers:
+  - author:     
+     name: Carlos Torres
+     email: carlos.a.torres-gonzalez@capgemini.com
+     role: Architect
+  - author:     
+     name: Carlos Torres
+     email: carlos.a.torres-gonzalez@capgemini.com
+     role: Backend developer
+ contributors:
+  - author:     
+     name: Carlos Torres
+     email: carlos.a.torres-gonzalez@capgemini.com
+     role: Tester
+
+management:
+ endpoint:
+  shutdown:
+   enabled: true
+  chaosmonkey:
+   enabled: true
+  chaosmonkeyjmx:
+   enabled: true
+ endpoints:
+  beans:
+   enabled: false
+  web:
+   base-path: /actuator
+   exposure:
+    include: '*'
+    exclude: loggers
+ security:
+  enabled: false
+
+spring:
+ profiles:
+  active: chaos-monkey
+ application:
+  name: chaosmonkey-spring-boot-expl
+ jmx:
+  default-domain: chaosmonkey.spring.boot.expl
+  
+chaos:
+ monkey:
+  enabled: true
+  watcher:
+   controller: true
+   rest-controller: true
+   service: true
+   repository: false
+   component: true
+  assaults:
+   level: 10
+   latency-active: true
+   latency-range-start: 3000
+   latency-range-end: 15000
